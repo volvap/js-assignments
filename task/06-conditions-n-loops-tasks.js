@@ -30,7 +30,16 @@
  *
  */
 function getFizzBuzz(num) {
-    throw new Error('Not implemented');
+    if ((num % 3==0) &&(num %5==0)){
+        return 'FizzBuzz';
+    }
+    else if (num % 3==0){
+        return 'Fizz';
+    }else if (num%5==0){
+        return 'Buzz';
+    } else {
+        return num;
+    }
 }
 
 
@@ -46,7 +55,15 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    throw new Error('Not implemented');
+    var rez = 1, i = 1;
+    while (i <= n)
+    {
+        rez = rez*i;
+
+        i++;
+    }
+    return rez
+
 }
 
 
@@ -63,7 +80,12 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    throw new Error('Not implemented');
+	var sum = 0;
+    for (var i = n1; n1 <= n2;n1++)
+	{
+		sum = sum + n1;
+	}
+	return sum;
 }
 
 
@@ -82,7 +104,10 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
-    throw new Error('Not implemented');
+if (a + b <= c || a + c <= b || b + c <= a) 
+        return false; 
+    else
+        return true; 
 }
 
 
@@ -119,7 +144,19 @@ function isTriangle(a,b,c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+    if (rect1.top > rect2.top) {
+		if ((rect2.top + rect2.height) < rect1.top) return false;
+	}
+	else if (rect1.top < rect2.top) {
+		if ((rect1.top + rect1.height) < rect2.top) return false;
+	}	
+	if (rect1.left > rect2.left) {
+		if ((rect2.left + rect2.width) < rect1.left) return false;
+	}
+	else if (rect1.left < rect2.left) {
+		if ((rect1.left + rect1.width) < rect2.left) return false;
+	}
+	return true;
 }
 
 
@@ -150,7 +187,13 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    throw new Error('Not implemented');
+	var dist_points = (point.x - circle.center.x) * (point.x - circle.center.x) + (point.y - circle.center.y) * (point.y - circle.center.y);
+    circle.radius *= circle.radius;
+    if (dist_points < circle.radius) {
+        return true;
+    }
+    return false;
+    
 }
 
 
@@ -166,7 +209,13 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    for (var i = 0; i < str.length; i++) {
+    var c = str.charAt(i);
+    if (str.indexOf(c) == i && str.indexOf(c, i + 1) == -1) {
+      return c;
+    }
+  }
+  return null;
 }
 
 
@@ -209,7 +258,12 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+   var newstr='';
+    for(var i=str.length-1; i>=0; i--)
+    {
+        newstr=newstr.concat(str[i])
+    }
+    return newstr
 }
 
 
@@ -226,7 +280,13 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+	var newstr='';
+    var str = num.toString();
+    for(var i=str.length-1; i>=0; i--)
+    {
+        newstr=newstr.concat(str[i])
+    }
+    return +newstr;
 }
 
 
@@ -251,7 +311,22 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    var digit, digits, flag, sum, _i, _len;
+    flag = true;
+    sum = 0;
+    digits = (ccn + '').split('').reverse();        
+    for (_i = 0, _len = digits.length; _i < _len; _i++) {       
+      digit = digits[_i];      
+      digit = parseInt(digit, 10);          
+      if ((flag = !flag)) {                      
+        digit *= 2;               
+      }
+      if (digit > 9) {               
+        digit -= 9;                    
+      }      
+      sum += digit;          
+    }    
+    return sum % 10 === 0;
 }
 
 
@@ -270,9 +345,8 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+ return (num-1) % 9 + 1;
 }
-
 
 /**
  * Returns true if the specified string has the balanced brackets and false otherwise.
@@ -356,7 +430,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return num.toString(n);
 }
 
 
@@ -431,7 +505,20 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-    throw new Error('Not implemented');
+    for (var i =0; i<3;i++){
+        if ((position[i][0]==position[i][1])&&(position[i][1] ==position[i][2])&&(position[i][1]!=undefined)){
+            return position[i][1];}
+    }
+    for (var i =0; i<3;i++){
+        if ((position[0][i]==position[1][i])&&(position[1][i] ==position[2][i])&&(position[1][i]!=undefined)){
+            return position[0][i];}
+    }
+    if ((position[0][0]==position[1][1])&&(position[1][1] ==position[2][2])&&(position[1][1]!=undefined)){
+        return position[0][0];
+    }
+    if ((position[0][2]==position[1][1])&&(position[1][1] ==position[2][0])&&(position[2][0]!=undefined)){
+        return position[0][2];
+    }
 }
 
 

@@ -32,6 +32,7 @@
  */
 function getRegexForGuid() {
    throw new Error('Not implemented');
+   //var pattern = new RegExp("/w+","gim");
 }
 
 
@@ -73,6 +74,7 @@ function getRegexForPitSpot() {
  */
 function getRegexForIPv4() {
    throw new Error('Not implemented');
+
 }
 
 
